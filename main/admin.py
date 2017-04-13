@@ -10,4 +10,4 @@ class CarAdmin(admin.ModelAdmin):
 
     show_link.allow_tags = True
 
-    list_display = ('mark', 'model', 'body_type', 'year', 'mileage', 'number_of_owners', 'phone_number', 'show_link',)
+    list_display = ('mark', 'model', 'body_type', 'year', 'announced_price', 'mileage', 'number_of_owners', 'phone_number', 'show_link', )

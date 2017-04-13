@@ -51,6 +51,7 @@ class Car(models.Model):
     negotiated_price = models.PositiveIntegerField(null=True, blank=True)
     phone_number = models.CharField(max_length=255, verbose_name='Phone', null=True, blank=True)
     link = models.URLField(max_length=1024)
+    comment = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return '{} {} {}'.format(self.mark, self.model, self.year)
