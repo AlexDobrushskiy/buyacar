@@ -22,21 +22,35 @@ CAR_MODELS = (('Fusion', 'Fusion'),
               ('Astra', 'Astra'),
               )
 
-CAR_BODY_TYPES = (('Hatchback', 'Hatchback'),
-                  ('Sedan', 'Sedan'),
+CAR_BODY_TYPES = (('Sedan', 'Sedan'),
+                  ('Hatchback', 'Hatchback'),
                   ('Wagon', 'Wagon'),
                   )
+
+CAR_COLORS = (('White', 'White'),
+              ('Red', 'Red'),
+              ('Dark grey', 'Dark grey'),
+              ('Blue', 'Blue'),
+              ('Silver', 'Silver'),
+              ('Silver-blue', 'Silver-blue'),
+              ('Silver-beige', 'Silver-beige'),
+              ('Black', 'Black'),
+              )
 
 
 # Create your models here.
 class Car(models.Model):
     mark = models.CharField(choices=CAR_MARKS, max_length=255)
     model = models.CharField(choices=CAR_MODELS, max_length=255)
-    body_type = models.CharField(choices=CAR_BODY_TYPES, max_length=255)
+    color = models.CharField(choices=CAR_COLORS, max_length=255, null=True, blank=True)
+    body_type = models.CharField(choices=CAR_BODY_TYPES, max_length=255, default=CAR_BODY_TYPES[1])
     year = models.PositiveIntegerField()
-    mileage = models.PositiveIntegerField()
-    number_of_owner = models.PositiveSmallIntegerField()
-    announced_price = models.PositiveIntegerField()
-    negotiated_price = models.PositiveIntegerField(null=True)
-    phone_number = models.CharField(max_length=255, verbose_name='79200393289')
-    link = models.CharField(max_length=1024)
+    mileage = models.PositiveIntegerField(null=True, blank=True)
+    number_of_owners = models.PositiveSmallIntegerField(null=True, blank=True)
+    announced_price = models.PositiveIntegerField(null=True, blank=True)
+    negotiated_price = models.PositiveIntegerField(null=True, blank=True)
+    phone_number = models.CharField(max_length=255, verbose_name='Phone', null=True, blank=True)
+    link = models.URLField(max_length=1024)
+
+    def __unicode__(self):
+        return '{} {} {}'.format(self.mark, self.model, self.year)
